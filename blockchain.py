@@ -44,4 +44,3 @@ class Blockchain(object):
         guess = '{}{}'.format(last_proof, proof).encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == '0000'
-
