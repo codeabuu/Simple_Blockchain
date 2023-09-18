@@ -2,14 +2,13 @@ import hashlib
 import time
 import json
 from uuid import uuid4
-from blockchain import Blockchain
 
 class Blockchain(object):
     def __init__(self):
         self.chain = []
         self.nowtransaction = []
         self.new_block(previous_hash=1, proof=100)
-    def new_block(self):
+    def new_block(self, previous_hash, proof):
         block = {
             'index': len(self.chain) + 1,
             'timestamp': time.time(),
@@ -22,12 +21,13 @@ class Blockchain(object):
         return block
 
     def new_transaction(self, sender, receiver, amount):
+        last_block = self.last_block()
         self.nowtransaction.append({
             'sender': sender,
             'receiver': receiver,
             'amount': amount,
         })
-        return self.last_block['index'] + 1
+        return last_block['index'] + 1
 
     def hash(self, block):
         block_str = json.dumps(block, sort_keys=True).encode()

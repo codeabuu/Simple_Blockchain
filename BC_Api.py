@@ -14,7 +14,7 @@ blockchain = Blockchain()
 
 @app.route('/mine', methods=['GET'])
 def mine():
-    last_block = blockchain.last_block
+    last_block = blockchain.last_block()
     last_proof = last_block['proof']
     proof = blockchain.proof_of_work(last_proof)
 
@@ -32,7 +32,7 @@ def mine():
         'index': block['index'],
         'transactions': block['transactions'],
         'proof': block['proof'],
-        'prev_hash': block['prev_hash'],
+        'previous_hash': block['previous_hash'],
     }
 
     return jsonify(response), 200
