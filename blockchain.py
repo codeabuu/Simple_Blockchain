@@ -2,19 +2,20 @@ import hashlib
 import time
 import json
 from uuid import uuid4
+from blockchain import Blockchain
 
 class Blockchain(object):
     def __init__(self):
         self.chain = []
         self.nowtransaction = []
-        self.new_block(prev_hash=1, proof=100)
+        self.new_block(previous_hash=1, proof=100)
     def new_block(self):
         block = {
             'index': len(self.chain) + 1,
             'timestamp': time.time(),
             'transactions': self.nowtransaction,
             'proof': proof,
-            'prev_hash': prev_hash or self.hash(self.chain[-1])
+            'previous_hash': previous_hash or self.hash(self.chain[-1])
         }
         self.nowtransaction = []
         self.chain.append(block)
