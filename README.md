@@ -1,6 +1,5 @@
-SIMPLE BLOCKCHAIN
-..................
-..................
+**SIMPLE BLOCKCHAIN**
+
 This is a basic implementation of a blockchain in Python, along with a Flask web application for interacting with the blockchain. This simple blockchain allows you to create transactions, mine new blocks, and maintain a decentralized ledger. Below, you'll find an overview of the combined code and how to use it.
 
 Code Overview
@@ -16,9 +15,9 @@ The blockchain.py file contains the core logic for the blockchain:
 >Getting the Last Block (last_block): This method returns the last block in the blockchain, which is useful for various operations, including creating new transactions.
 >Proof of Work (proof_of_work and valid_proof): The proof_of_work method is used to find a valid proof for a new block. It starts with a proof of 0 and increments it until a valid proof is found. The valid_proof method checks if a proof meets certain criteria (e.g., starts with four leading zeros).
 
-Flask Web Application (app.py)
+Flask Web Application (BC_Api.py)
 
-The app.py file contains a Flask web application that provides a RESTful API for interacting with the blockchain:
+The BC_Api.py file contains a Flask web application that provides a RESTful API for interacting with the blockchain:
 >Initialization: The Flask app is created, and a unique node ID (node_id) is generated to represent this blockchain node.
 >Creating a Blockchain Instance: An instance of the Blockchain class is created, allowing the web application to interact with the blockchain.
 >Mining a New Block (/mine route): This route allows users to mine a new block. It retrieves the last block from the blockchain, calculates a new proof of work, creates a new transaction to reward the miner, and adds the new block to the blockchain. The route returns information about the newly mined block in JSON format.
@@ -28,8 +27,19 @@ The app.py file contains a Flask web application that provides a RESTful API for
 Usage
 
 To use this simple blockchain and its web application:
-1.Import the Blockchain class from blockchain.py
-2.Create an instance of the Blockchain class.
-3.Start the Flask web application by running app.py.
-4.se HTTP requests to interact with the blockchain through the provided routes (/mine, /transactions/new, and /chain) using a tool like curl or a web-based client like Postman.(i prefer curl)
+1.clone the repository to your terminal
+2.Make all files executable(chmod +x *.py)
+3.Start the Flask web application by running BC_Api.py.
+root@c9c3062e6abc:~/Simple_Blockchain# python3 BC_Api.py
+ * Serving Flask app 'BC_Api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://<yourip>:5000
+ * Running on http://<yourip>:5000
+Press CTRL+C to quit
+
+4.Use HTTP requests to interact with the blockchain through the provided routes (/mine, /transactions/new, and /chain) using a tool like curl or a web-based client like Postman.(i prefer curl)i.e
+TO use mine on curl run this command: curl -X GET http://<yourip>:5000/mine
+
 
